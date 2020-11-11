@@ -1,0 +1,19 @@
+搭建redis-cluster 集群
+参照学习文档的集群搭建，用到的命令如下：
+mkdir redis-cluster/7001
+make install PREFIX=/opt/lagou/servers/redis-cluster/7001 ~~7006
+修改redis.conf 的端口号为7001  （7001~7006）
+cluster-enabled yes
+./redis-cli --cluster create 192.168.139.151:7001 192.168.139.151:7002 192.168.139.151:7003 192.168.139.151:7004 192.168.139.151:7005 192.168.139.151:7006 --cluster-replicas 1
+
+查看集群节点状态
+cluster nodes
+
+
+扩容：
+新建节点并启动，可参照7001-7006 的过程
+参照命令如下：./redis-cli --cluster add-node 192.168.139.151:7007
+192.168.139.151:7001
+hash槽重新分配（数据迁移）
+
+
